@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Customer Churn Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        /* === BANKING COLOR THEME === */
+        .primary {
+            color: #2563eb;
+        }
+        .accent {
+            color: #0d9488;
+        }
+
+        /* HERO BACKGROUND */
+        .hero-pattern {
+            background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+        }
+
+        /* CARD EFFECT */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+        }
+
+        /* STAT CARD */
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #2563eb, #0d9488);
+        }
+
+        /* TAB */
+        .tab-button.active {
+            border-bottom-color: #0d9488;
+            color: #0d9488;
+        }
+
+        /* BADGE */
+        .model-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        /* CHART */
+        .chart-container {
+            height: 380px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+            <i class="fas fa-building-columns text-2xl text-blue-600"></i>
+            <h1 class="text-xl font-bold text-gray-900">Bank Customer Churn Prediction</h1>
+        </div>
+        <div class="flex space-x-4">
+            <a href="#overview" class="text-gray-700 hover:text-blue-600 transition">Overview</a>
+            <a href="#analysis" class="text-gray-700 hover:text-blue-600 transition">Analysis</a>
+            <a href="#models" class="text-gray-700 hover:text-blue-600 transition">Models</a>
+            <a href="#results" class="text-gray-700 hover:text-blue-600 transition">Results</a>
+        </div>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Hero Section -->
+<section class="hero-pattern text-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      
+      <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+        <i class="fas fa-chart-line text-sm"></i>
+        <span class="text-sm font-semibold">Machine Learning for Banking Analytics</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Analyzing and Predicting Customer Churn in Banking
+      </h1>
+
+      <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-6">
+        A Comparative Analysis of Naive Bayes, K-Nearest Neighbor, and Decision Tree
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-calendar"></i>
+          <span>April 2025</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-university"></i>
+          <span>Bank Customer Churn Dataset</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-database"></i>
+          <span>10,000+ Customer Records</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Quick Stats -->
+<section class="py-8 bg-white border-b">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+      <div class="text-center">
+        <div class="text-3xl font-bold text-teal-600">80%</div>
+        <div class="text-sm text-gray-600 mt-1">Naive Bayes Accuracy</div>
+      </div>
+
+      <div class="text-center">
+        <div class="text-3xl font-bold text-indigo-600">74%</div>
+        <div class="text-sm text-gray-600 mt-1">Decision Tree Accuracy</div>
+      </div>
+
+      <div class="text-center">
+        <div class="text-3xl font-bold text-blue-600">76%</div>
+        <div class="text-sm text-gray-600 mt-1">KNN Accuracy</div>
+      </div>
+
+      <div class="text-center">
+        <div class="text-3xl font-bold text-sky-600">3</div>
+        <div class="text-sm text-gray-600 mt-1">Models Evaluated</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section id="overview" class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Project Overview -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Project Overview</h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Objective -->
+        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-bullseye text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Research Objective</h3>
+              <p class="text-gray-600">
+                Develop classification models to predict customer churn in the banking
+                sector, enabling early identification of potential churners and supporting
+                data-driven customer retention strategies.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Methodology -->
+        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-brain text-teal-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Methodology</h3>
+              <p class="text-gray-600">
+                The study compares multiple supervised learning algorithms including
+                Naive Bayes, Decision Tree, K-Nearest Neighbors (KNN), and Multilayer
+                Perceptron (MLP), with additional techniques such as feature scaling,
+                SMOTE, and hyperparameter tuning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Customer Attributes -->
+    <div class="mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Key Customer Attributes</h2>
+
+        <div class="flex space-x-4 overflow-x-auto py-4 px-2">
+            <!-- RowNumber -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">#</div>
+                <div class="font-bold text-gray-900">RowNumber</div>
+                <div class="text-xs text-gray-500 mt-1">Data Index</div>
+            </div>
+
+            <!-- CustomerId -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">🆔</div>
+                <div class="font-bold text-gray-900">CustomerId</div>
+                <div class="text-xs text-gray-500 mt-1">Unique ID</div>
+            </div>
+
+            <!-- Surname -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">👤</div>
+                <div class="font-bold text-gray-900">Surname</div>
+                <div class="text-xs text-gray-500 mt-1">Customer Name</div>
+            </div>
+
+            <!-- CreditScore -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">💳</div>
+                <div class="font-bold text-gray-900">CreditScore</div>
+                <div class="text-xs text-gray-500 mt-1">Credit Rating</div>
+            </div>
+
+            <!-- Geography -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">🌍</div>
+                <div class="font-bold text-gray-900">Geography</div>
+                <div class="text-xs text-gray-500 mt-1">Location</div>
+            </div>
+
+            <!-- Gender -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">⚧</div>
+                <div class="font-bold text-gray-900">Gender</div>
+                <div class="text-xs text-gray-500 mt-1">Male / Female</div>
+            </div>
+
+            <!-- Age -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">🎂</div>
+                <div class="font-bold text-gray-900">Age</div>
+                <div class="text-xs text-gray-500 mt-1">Customer Age</div>
+            </div>
+
+            <!-- Tenure -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">⏳</div>
+                <div class="font-bold text-gray-900">Tenure</div>
+                <div class="text-xs text-gray-500 mt-1">Years with Bank</div>
+            </div>
+
+            <!-- Balance -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">🏦</div>
+                <div class="font-bold text-gray-900">Balance</div>
+                <div class="text-xs text-gray-500 mt-1">Account Balance</div>
+            </div>
+
+            <!-- NumOfProducts -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">📦</div>
+                <div class="font-bold text-gray-900">NumOfProducts</div>
+                <div class="text-xs text-gray-500 mt-1">Products Used</div>
+            </div>
+
+            <!-- HasCrCard -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">💳</div>
+                <div class="font-bold text-gray-900">HasCrCard</div>
+                <div class="text-xs text-gray-500 mt-1">Credit Card</div>
+            </div>
+
+            <!-- IsActiveMember -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">✅</div>
+                <div class="font-bold text-gray-900">IsActiveMember</div>
+                <div class="text-xs text-gray-500 mt-1">Active Status</div>
+            </div>
+
+            <!-- EstimatedSalary -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">💰</div>
+                <div class="font-bold text-gray-900">EstimatedSalary</div>
+                <div class="text-xs text-gray-500 mt-1">Estimated Income</div>
+            </div>
+
+            <!-- Exited -->
+            <div class="flex-none bg-white p-5 rounded-xl shadow-md text-center card-hover w-40">
+                <div class="text-xl mb-2">🚪</div>
+                <div class="font-bold text-gray-900">Exited</div>
+                <div class="text-xs text-gray-500 mt-1">Churn Status</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Key Findings -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">Key Findings</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Model Performance -->
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-md card-hover">
+          <div class="flex items-center justify-between mb-4">
+            <span class="model-badge">Model Performance</span>
+            <i class="fas fa-check-circle text-blue-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">MLP Performs Best</h3>
+          <p class="text-gray-700">
+            The Multilayer Perceptron achieved the highest classification accuracy
+            and ROC-AUC score, outperforming traditional models such as Naive Bayes
+            and Decision Tree.
+          </p>
+        </div>
+
+        <!-- Class Imbalance -->
+        <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl shadow-md card-hover">
+          <div class="flex items-center justify-between mb-4">
+            <span class="model-badge">Data Characteristics</span>
+            <i class="fas fa-balance-scale text-teal-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Class Imbalance Issue</h3>
+          <p class="text-gray-700">
+            The dataset exhibits class imbalance between churned and retained customers.
+            Applying SMOTE significantly improved recall and overall model robustness.
+          </p>
+        </div>
+
+        <!-- Business Insight -->
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl shadow-md card-hover">
+          <div class="flex items-center justify-between mb-4">
+            <span class="model-badge">Business Insight</span>
+            <i class="fas fa-lightbulb text-indigo-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Retention Strategy</h3>
+          <p class="text-gray-700">
+            Customers with low tenure, high service usage, and declining balances
+            are more likely to churn, highlighting the importance of personalized
+            retention programs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
