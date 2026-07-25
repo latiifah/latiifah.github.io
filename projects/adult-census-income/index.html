@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adult Census Income</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1f2340",
+            secondary: "#8e7cc3",
+            accent: "#d8b4fe",
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+
+  .analysis-tab {
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #f3f1f7;
+    color: #1f2340;
+    font-weight: 600;
+    transition: all .3s ease;
+  }
+
+  .analysis-tab:hover {
+    background: #d8cff1;
+  }
+
+  .active-tab {
+    background: #917FB3;
+    color: white;
+  }
+
+  </style>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Bootstrap Icons (optional) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    rel="stylesheet"
+  >
+</head>
+
+<body class="bg-white text-gray-900">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-purple-100">
+
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
+      <!-- Home -->
+      <a href="../../index.html#projects"
+        class="p-2 rounded-lg hover:bg-purple-100 transition"
+        title="Back to Home">
+
+          <i data-lucide="house"></i>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-8 text-sm font-semibold">
+        <a href="#overview">Overview</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#results">Results</a>
+      </div>
+
+      <!-- Mobile -->
+      <button id="menuToggle" class="md:hidden p-2 rounded-lg">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-6 pt-20 pb-16">
+    <!-- ================= HERO PROJECT ================= -->
+    <section class="rounded-[32px] bg-[#917FB3]
+                    px-8 md:px-16 py-8 mb-12 text-white text-center">
+
+      <!-- Badge -->
+      <div class="flex justify-center gap-3 flex-wrap mb-3">
+
+        <span class="inline-flex items-center gap-2 bg-white/90 text-[#917FB3]
+                      text-xs font-bold uppercase tracking-widest
+                      px-4 py-2 rounded-full mb-6">
+            <i class="bi bi-mortarboard"></i>
+
+          <span class="text-xs font-bold tracking-[0.18em] uppercase">
+            University Project
+          </span>
+
+        </span>
+
+        <span class="inline-flex items-center gap-2 bg-white/90 text-[#917FB3]
+                      text-xs font-bold uppercase tracking-widest
+                      px-4 py-2 rounded-full mb-6">
+            <i class="bi bi-mortarboard"></i>
+
+          <span class="text-xs font-bold tracking-[0.18em] uppercase">
+            Machine Learning
+          </span>
+
+        </span>
+
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl font-black leading-tight max-w-4xl mx-auto">
+        Adult Census Income Classification
+      </h1>
+
+      <!-- Description -->
+      <p class="mt-8 text-lg text-white/90 max-w-2xl mx-auto leading-relaxed text-center">
+        Comparative study of K-Nearest Neighbors and Naive Bayes enhanced with 
+        Genetic Algorithm and Particle Swarm Optimization to predict individual 
+        income using the Adult Census Income dataset.
+      </p>
+
+    </section>
+
+    <!-- ================= PROJECT INFO ================= -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+        <!-- Category -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-6
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+            <div class="w-8 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
+                Category
+            </p>
+
+            <h3 class="font-bold text-xl text-primary">
+                Data Science
+            </h3>
+        </div>
+
+        <!-- Algorithms -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-6
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+            <div class="w-8 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
+                Algorithms
+            </p>
+
+            <h3 class="font-bold text-xl text-primary">
+                KNN • Naive Bayes
+            </h3>
+
+        </div>
+
+        <!-- Optimization -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-6
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+            <div class="w-8 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
+                Optimization
+            </p>
+
+            <h3 class="font-bold text-xl text-primary">
+                GA • PSO
+            </h3>
+        </div>
+
+        <!-- Task -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-6
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+            <div class="w-8 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
+                Best Model
+            </p>
+
+            <h3 class="font-bold text-xl text-primary">
+                KNN + GA
+            </h3>
+        </div>
+
+    </div>
+
+    <!-- ================= OVERVIEW ================= -->
+    <section id="overview" class="scroll-mt-20 max-w-7xl mx-auto px-6 pt-4 pb-16">
+
+      <!-- Section Title -->
+      <h2 class="text-2xl font-extrabold text-primary mb-8">
+        Overview
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Research Objective -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+          <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+          <h3 class="text-xl font-bold text-primary mb-4">
+            Research Objective
+          </h3>
+
+          <p class="text-gray-600 leading-8 text-justify">
+            Develop and compare machine learning classification models to predict
+            whether an individual's annual income exceeds $50K using the Adult
+            Census Income dataset, while evaluating the impact of optimization
+            techniques on model performance.
+          </p>
+
+        </div>
+
+        <!-- Methodology -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+          <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+          <h3 class="text-xl font-bold text-primary mb-4">
+            Methodology
+          </h3>
+
+          <p class="text-gray-600 leading-8 text-justify">
+            Applied data preprocessing including missing value imputation,
+            categorical encoding, normalization, and SMOTE for class imbalance.
+            Model performance was optimized using Genetic Algorithm (GA) and
+            Particle Swarm Optimization (PSO), then evaluated through
+            10-fold cross-validation.
+          </p>
+
+        </div>
+
+        <!-- Dataset Information -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300">
+
+          <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+          <h3 class="text-xl font-bold text-primary mb-6">
+            Dataset Information
+          </h3>
+
+          <div class="space-y-4 text-sm">
+
+            <!-- Dataset -->
+            <div class="flex justify-between border-b border-gray-100 pb-3">
+              <span class="font-medium text-gray-500">Dataset</span>
+
+              <a href="https://www.kaggle.com/datasets/uciml/adult-census-income/data"
+                target="_blank"
+                class="font-semibold text-[#917FB3] hover:underline">
+                Adult Census Income ↗
+              </a>
+            </div>
+
+            <!-- Source -->
+            <div class="flex justify-between border-b border-gray-100 pb-3">
+              <span class="font-medium text-gray-500">Source</span>
+              <span class="font-semibold text-gray-800">Kaggle</span>
+            </div>
+
+            <!-- Records -->
+            <div class="flex justify-between border-b border-gray-100 pb-3">
+              <span class="font-medium text-gray-500">Records</span>
+              <span class="font-semibold text-gray-800">32,561</span>
+            </div>
+
+            <!-- Features -->
+            <div class="flex justify-between border-b border-gray-100 pb-3">
+              <span class="font-medium text-gray-500">Features</span>
+              <span class="font-semibold text-gray-800">14 Attributes</span>
+            </div>
+
+            <div class="flex justify-between border-b border-gray-100 pb-3">
+                <span class="font-medium text-gray-500">Feature Types</span>
+                <span class="font-semibold text-gray-800">
+                    Numerical & Categorical
+                </span>
+            </div>
+
+            <!-- Target -->
+            <div class="flex justify-between">
+              <span class="font-medium text-gray-500">Target</span>
+              <span class="font-semibold text-gray-800">Income (>50K / ≤50K)</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Workflow -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8
+                    h-[430px]
+                    shadow-md
+                    hover:border-[#917FB3]
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                    transition-all duration-300
+                    flex flex-col">
+
+          <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+          <h3 class="text-xl font-bold text-primary mb-8">
+            Workflow
+          </h3>
+
+          <div class="ml-2 flex-1 overflow-y-auto pr-2">
+            <div class="relative ml-2">
+
+                <!-- Main Timeline -->
+                <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-[#D8CFF1]"></div>
+
+                <!-- STEP 1 -->
+                <div class="relative flex gap-6 pb-7">
+
+                    <div class="w-4 h-4 rounded-full bg-[#917FB3] shrink-0 z-10"></div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary">
+                            Dataset Collection
+                        </h4>
+
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            Adult Census Income dataset obtained from Kaggle,
+                            containing demographic and employment information.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="relative flex gap-6 pb-7">
+
+                    <div class="w-4 h-4 rounded-full bg-[#917FB3] shrink-0 z-10"></div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary">
+                            Data Preprocessing
+                        </h4>
+
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            Missing value imputation, categorical encoding,
+                            feature normalization, and data preparation.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="relative flex gap-6 pb-7">
+
+                    <div class="w-4 h-4 rounded-full bg-[#917FB3] shrink-0 z-10"></div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary">
+                            Class Imbalance
+                        </h4>
+
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            Applied SMOTE to address class imbalance before model training.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="relative flex gap-6 pb-7">
+
+                    <div class="w-4 h-4 rounded-full bg-[#917FB3] shrink-0 z-10"></div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary">
+                            Model Development
+                        </h4>
+
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            Built classification models using
+                            K-Nearest Neighbors and Naive Bayes.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="relative flex gap-6 pb-7">
+
+                    <div class="w-4 h-4 rounded-full bg-[#917FB3] shrink-0 z-10"></div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary">
+                            Hyperparameter Optimization
+                        </h4>
+
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            Optimized model parameters using Genetic Algorithm (GA)
+                            and Particle Swarm Optimization (PSO).
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="relative flex gap-6">
+
+                    <div class="w-4 h-4 rounded-full bg-[#917FB3] shrink-0 z-10"></div>
+
+                    <div>
+                        <h4 class="font-semibold text-primary">
+                            Model Evaluation
+                        </h4>
+
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            Evaluated using 10-fold cross-validation with
+                            Accuracy, Precision, Recall, and F1-score.
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= ANALYSIS ================= -->
+    <section id="analysis" class="scroll-mt-20 max-w-7xl mx-auto px-6 pt-4 pb-16">
+
+      <!-- Section Title -->
+      <h2 class="text-2xl font-extrabold text-primary mb-8">
+        Analysis
+      </h2>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap gap-3 mb-8">
+        <button onclick="openTab('prep', this)" class="analysis-tab active-tab">
+          Data Preprocessing
+        </button>
+
+        <button onclick="openTab('model', this)" class="analysis-tab">
+          Model Evaluation
+        </button>
+      </div>
+
+      <!-- ================= Data Preprocessing ================= -->
+      <div id="prep" class="analysis-content">
+
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8
+                    shadow-md">
+
+          <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+          <h3 class="text-xl font-bold text-primary mb-6">
+            Data Preprocessing
+          </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <div class="border rounded-xl p-5">
+                <h4 class="font-semibold text-primary mb-4">
+                  Income Distribution
+                </h4>
+                <canvas id="incomeChart"></canvas>
+                <p class="text-gray-600 text-sm mt-4 leading-7 text-justify">
+                  The dataset shows an imbalance between income classes, where individuals
+                  with income below or equal to $50K dominate the dataset. Therefore,
+                  SMOTE was applied during preprocessing to improve model learning on
+                  minority classes.
+                </p>
+              </div>
+
+              <div class="space-y-6">
+
+                <!-- Missing Values -->
+                <div class="border rounded-2xl p-5">
+                  <h4 class="font-semibold text-primary mb-5">
+                    Missing Values
+                  </h4>
+                  <canvas id="missingChart" height="180"></canvas>
+                  <p class="text-sm text-gray-600 mt-5 leading-7 text-justify">
+                    Missing values initially represented by the <b>"?"</b> symbol were converted
+                    to <b>NaN</b> for proper identification. Numerical features were imputed using
+                    the mean value, while categorical features were filled with the most frequent value (mode).
+                  </p>
+                </div>
+
+                <!-- Feature Encoding -->
+                <div class="border rounded-2xl p-5">
+                  <div class="flex justify-between items-center mb-3">
+                    <h4 class="font-semibold text-primary">
+                      Feature Encoding
+                    </h4>
+                    <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+                      Completed
+                    </span>
+                  </div>
+                  <p class="text-sm text-gray-600 leading-7 text-justify">
+                    Categorical variables were transformed into numerical values using
+                    <b>Label Encoding</b> before model training.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+      <!-- ================= MODEL SELECT ================= -->
+      <div id="model"
+        class="analysis-content hidden">
+
+      <!-- Card -->
+      <div class="bg-white rounded-2xl
+                      border border-gray-200
+                      border-t-4 border-t-[#917FB3]
+                      p-8 shadow-md">
+
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+
+              <!-- Left -->
+              <div>
+                <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+                <h3 class="text-xl font-bold text-primary">
+                  Model Evaluation
+                </h3>
+              </div>
+
+              <!-- Right -->
+              <select
+                id="modelSelect"
+                class="mt-5 md:mt-0
+                      w-full md:w-80
+                      border border-gray-300
+                      rounded-xl
+                      px-4 py-3
+                      text-gray-700
+                      bg-white
+                      shadow-sm
+                      focus:outline-none
+                      focus:ring-2
+                      focus:ring-[#917FB3]">
+
+                <option value="nb">Naive Bayes</option>
+                <option value="knn">K-Nearest Neighbors</option>
+                <option value="nb_ga">Naive Bayes + GA</option>
+                <option value="nb_pso">Naive Bayes + PSO</option>
+                <option value="knn_ga">K-Nearest Neighbors + GA</option>
+                <option value="knn_pso">K-Nearest Neighbors + PSO</option>
+
+              </select>
+
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+              <!-- ================= LEFT ================= -->
+              <div class="border rounded-2xl p-4 sm:p-6">
+
+                  <!-- ================= DESKTOP ================= -->
+                  <div class="hidden md:flex justify-center items-center overflow-x-auto">
+
+                      <div>
+
+                          <h4 class="font-semibold text-primary text-center mb-6">
+                              Confusion Matrix
+                          </h4>
+
+                          <!-- Header -->
+                          <div class="grid grid-cols-3 gap-4 mb-3">
+
+                              <div></div>
+
+                              <div class="col-span-2 text-center">
+                                  <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-2">
+                                      Predicted
+                                  </p>
+
+                                  <div class="grid grid-cols-2 gap-4">
+                                      <p class="font-semibold">≤50K</p>
+                                      <p class="font-semibold">>50K</p>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                          <!-- Body -->
+                          <div class="grid grid-cols-3 gap-4 items-center">
+
+                              <!-- Actual -->
+                              <div class="flex items-center gap-2">
+
+                                  <span
+                                      class="-rotate-90 text-xs uppercase tracking-[0.2em] text-gray-500">
+                                      Actual
+                                  </span>
+
+                                  <div class="flex flex-col justify-between h-52 font-semibold">
+                                      <span>≤50K</span>
+                                      <span>>50K</span>
+                                  </div>
+
+                              </div>
+
+                              <!-- Matrix -->
+                              <div class="grid grid-cols-2 gap-4 col-span-2">
+
+                                  <div id="tnCell"
+                                      class="rounded-2xl p-7 text-center transition-all duration-300">
+                                      <p class="text-xs text-gray-500 mb-2">TN</p>
+                                      <p id="tn" class="text-3xl font-bold text-primary">-</p>
+                                  </div>
+
+                                  <div id="fpCell"
+                                      class="rounded-2xl p-7 text-center transition-all duration-300">
+                                      <p class="text-xs text-gray-500 mb-2">FP</p>
+                                      <p id="fp" class="text-3xl font-bold text-primary">-</p>
+                                  </div>
+
+                                  <div id="fnCell"
+                                      class="rounded-2xl p-7 text-center transition-all duration-300">
+                                      <p class="text-xs text-gray-500 mb-2">FN</p>
+                                      <p id="fn" class="text-3xl font-bold text-primary">-</p>
+                                  </div>
+
+                                  <div id="tpCell"
+                                      class="rounded-2xl p-7 text-center transition-all duration-300">
+                                      <p class="text-xs text-gray-500 mb-2">TP</p>
+                                      <p id="tp" class="text-3xl font-bold text-primary">-</p>
+                                  </div>
+
+                              </div>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <!-- ================= MOBILE ================= -->
+                  <div class="md:hidden">
+
+                      <h4 class="font-semibold text-primary text-center mb-5">
+                          Confusion Matrix
+                      </h4>
+
+                      <!-- Column Label -->
+                      <div class="grid grid-cols-3 text-center mb-3">
+
+                          <div></div>
+
+                          <div class="font-semibold text-sm">
+                              ≤50K
+                          </div>
+
+                          <div class="font-semibold text-sm">
+                              >50K
+                          </div>
+
+                      </div>
+
+                      <!-- Row 1 -->
+                      <div class="grid grid-cols-3 gap-3 mb-3">
+
+                          <div class="flex items-center justify-center font-semibold text-sm">
+                              ≤50K
+                          </div>
+
+                          <div id="tnCellMobile"
+                              class="rounded-xl p-4 flex flex-col items-center justify-center transition-all duration-300">
+                              <p class="text-xs text-gray-500 mb-1">TN</p>
+                              <p id="tnMobile"
+                                class="text-base sm:text-xl font-bold text-primary leading-none">
+                                  -
+                              </p>
+                          </div>
+
+                          <div id="fpCellMobile"
+                              class="rounded-xl p-4 flex flex-col items-center justify-center transition-all duration-300">
+                              <p class="text-xs text-gray-500 mb-1">FP</p>
+                              <p id="fpMobile"
+                                class="text-base sm:text-xl font-bold text-primary leading-none">
+                                  -
+                              </p>
+                          </div>
+
+                      </div>
+
+                      <!-- Row 2 -->
+                      <div class="grid grid-cols-3 gap-3">
+
+                          <div class="flex items-center justify-center font-semibold text-sm">
+                              >50K
+                          </div>
+
+                          <div id="fnCellMobile"
+                              class="rounded-xl p-4 flex flex-col items-center justify-center transition-all duration-300">
+                              <p class="text-xs text-gray-500 mb-1">FN</p>
+                              <p id="fnMobile"
+                                class="text-base sm:text-xl font-bold text-primary leading-none">
+                                  -
+                              </p>
+                          </div>
+
+                          <div id="tpCellMobile"
+                              class="rounded-xl p-4 flex flex-col items-center justify-center transition-all duration-300">
+                              <p class="text-xs text-gray-500 mb-1">TP</p>
+                              <p id="tpMobile"
+                                class="text-base sm:text-xl font-bold text-primary leading-none">
+                                  -
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- ================= RIGHT ================= -->
+              <div class="border rounded-2xl p-4 sm:p-6">
+                  <h4 class="font-semibold text-primary text-center mb-6">
+                      Performance
+                  </h4>
+
+                  <!-- Accuracy -->
+                  <div class="mb-8">
+                      <p class="text-xs uppercase tracking-[0.2em] text-primary/60">
+                          Accuracy
+                      </p>
+                      <p id="accuracy"
+                        class="text-4xl sm:text-6xl font-black text-[#917FB3] mt-3">
+                          -
+                      </p>
+                  </div>
+
+                  <!-- Classification Report Table -->
+                <div class="overflow-x-auto mt-6">
+                  <table class="w-full border border-gray-200 rounded-xl overflow-hidden text-xs sm:text-sm">
+
+                      <thead class="bg-[#d8ccf0]">
+                          <tr>
+                              <th class="border px-4 py-3 text-center">Class</th>
+                              <th class="border px-4 py-3 text-center">Precision</th>
+                              <th class="border px-4 py-3 text-center">Recall</th>
+                              <th class="border px-4 py-3 text-center">F1</th>
+                          </tr>
+                      </thead>
+
+                      <tbody>
+
+                          <tr class="hover:bg-gray-50">
+                              <td class="border px-4 py-3 font-medium text-center">≤50K</td>
+                              <td id="precision0" class="border text-center">-</td>
+                              <td id="recall0" class="border text-center">-</td>
+                              <td id="f10" class="border text-center">-</td>
+                          </tr>
+
+                          <tr class="hover:bg-gray-50">
+                              <td class="border px-4 py-3 font-medium text-center">>50K</td>
+                              <td id="precision1" class="border text-center">-</td>
+                              <td id="recall1" class="border text-center">-</td>
+                              <td id="f11" class="border text-center">-</td>
+                          </tr>
+
+                      </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- ================= RESULT ================= -->
+    <section id="results" class="scroll-mt-20 max-w-7xl mx-auto px-6 pt-4 pb-16">
+      <!-- Section Title -->
+       <h2 class="text-2xl font-extrabold text-primary mb-8">
+        Results
+      </h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- ================= LEFT ================= -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8 shadow-md">
+
+            <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+            <h3 class="text-xl font-bold text-primary mb-6">
+                Model Comparison
+            </h3>
+
+            <!-- nanti card-card model masuk ke sini -->
+            <div id="comparisonList"
+                 class="space-y-4 max-h-[450px] overflow-y-auto pr-2">
+
+            </div>
+
+        </div>
+
+        <!-- ================= RIGHT ================= -->
+        <div class="bg-white rounded-2xl
+                    border border-gray-200
+                    border-t-4 border-t-[#917FB3]
+                    p-8 shadow-md">
+
+            <div class="w-10 h-1 bg-[#917FB3] rounded-full mb-4"></div>
+
+            <h3 class="text-xl font-bold text-primary mb-5">
+                Conclusion
+            </h3>
+
+            <!-- Main Findings -->
+            <div class="mb-4">
+
+                <h4 class="font-semibold text-primary mb-2">
+                    Main Findings
+                </h4>
+
+                <ul class="space-y-2 text-gray-600 leading-7">
+
+                    <li class="flex gap-2">
+                        <span class="text-[#917FB3] font-bold">•</span>
+                        <span>
+                            Optimization techniques improved the overall classification performance compared to the baseline models.
+                        </span>
+                    </li>
+
+                    <li class="flex gap-2">
+                        <span class="text-[#917FB3] font-bold">•</span>
+                        <span>
+                            K-Nearest Neighbors consistently outperformed Naive Bayes across the evaluated performance metrics.
+                        </span>
+                    </li>
+
+                    <li class="flex gap-2">
+                        <span class="text-[#917FB3] font-bold">•</span>
+                        <span>
+                            Genetic Algorithm achieved the strongest performance improvement among the evaluated optimization techniques.
+                        </span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <!-- Practical Insight -->
+            <div>
+
+                <h4 class="font-semibold text-primary mb-2">
+                    Practical Insight
+                </h4>
+
+                <p class="text-gray-600 leading-8 text-justify">
+                    The experimental results demonstrate that combining machine learning
+                    algorithms with optimization techniques can improve classification
+                    performance for income prediction. These findings highlight the
+                    potential of optimization methods to enhance predictive models for
+                    real-world decision support applications.
+                </p>
+
+            </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+<script>
+  lucide.createIcons();
+  function shareProject() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Sales Performance Dashboard',
+        text: 'Check out this data analytics project!',
+        url: window.location.href
+      });
+    } else {
+      // fallback: copy link
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  }
+
+  function openTab(tabName, button){
+
+      const contents = document.querySelectorAll(".analysis-content");
+      const tabs = document.querySelectorAll(".analysis-tab");
+
+      contents.forEach(content=>{
+          content.classList.add("hidden");
+      });
+
+      tabs.forEach(tab=>{
+          tab.classList.remove("active-tab");
+      });
+
+      document.getElementById(tabName).classList.remove("hidden");
+
+      button.classList.add("active-tab");
+  }
+
+const incomeChart = new Chart(
+    document.getElementById('incomeChart'),
+    {
+        type: 'doughnut',
+        data: {
+            labels: [
+                "<=50K",
+                ">50K"
+            ],
+            datasets: [{
+                data: [
+                    24720,
+                    7841
+                ],
+                
+                backgroundColor: [
+                    "#917FB3",   // ungu utama
+                    "#D8CFF1"    // ungu muda
+                ],
+
+                borderColor: "#ffffff",
+                borderWidth: 3,
+                hoverOffset: 10
+            }]
+        },
+
+        options: {
+            plugins: {
+                legend:{
+                    position:'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context){
+                            let total =
+                            context.dataset.data
+                            .reduce((a,b)=>a+b,0);
+
+                            let percentage =
+                            ((context.raw/total)*100)
+                            .toFixed(1);
+
+                            return `${context.raw} records (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    }
+);
+
+const missingCtx = document.getElementById("missingChart");
+    if(missingCtx){
+      new Chart(missingCtx,{
+        type:"bar",
+        data:{
+          labels:[
+            "Occupation",
+            "Workclass",
+            "Native Country"
+          ],
+          datasets:[{
+            data:[1843,1836,583],
+            backgroundColor:[
+              "#917FB3",
+              "#A48BCF",
+              "#CDBBEF"
+            ],
+            borderRadius:8
+          }]
+        },
+        options:{
+          indexAxis:"y",
+          plugins:{
+            legend:{
+              display:false
+            }
+          },
+          scales:{
+            x:{
+              grid:{
+                display:false
+              }
+            },
+            y:{
+              grid:{
+                display:false
+              }
+            }
+          }
+        }
+      });
+    }
+
+/* ================= MODEL DATA ================= */
+const modelData = {
+  nb:{
+    accuracy:"79%",
+    confusion:{
+      tn:4698,
+      fp:278,
+      fn:1077,
+      tp:460
+    },
+    report:{
+      class0:{
+        precision:"0.81",
+        recall:"0.94",
+        f1:"0.87"
+      },
+      class1:{
+        precision:"0.62",
+        recall:"0.30",
+        f1:"0.40"
+      }
+    },
+    weighted:{
+      precision:"0.77",
+      recall:"0.79",
+      f1:"0.76"
+    }
+  },
+
+  knn:{
+    accuracy:"81.8%",
+    confusion:{
+      tn:4291,
+      fp:685,
+      fn:500,
+      tp:1037
+    },
+    report:{
+      class0:{
+        precision:"0.90",
+        recall:"0.86",
+        f1:"0.88"
+      },
+      class1:{
+        precision:"0.60",
+        recall:"0.67",
+        f1:"0.64"
+      }
+    },
+    
+    weighted:{
+      precision:"0.83",
+      recall:"0.82",
+      f1:"0.82"
+    }
+  },
+
+  nb_ga:{
+    accuracy:"80%",
+    confusion:{
+      tn:4927,
+      fp:49,
+      fn:1237,
+      tp:300
+    },
+    report:{
+      class0:{
+        precision:"0.80",
+        recall:"0.99",
+        f1:"0.86"
+      },
+      class1:{
+        precision:"0.60",
+        recall:"0.20",
+        f1:"0.32"
+      }
+    },
+    weighted:{
+      precision:"0.81",
+      recall:"0.80",
+      f1:"0.75"
+    }
+  },
+
+  nb_pso:{
+    accuracy:"82%",
+    confusion:{
+      tn:4608,
+      fp:368,
+      fn:778,
+      tp:759
+    },
+    report:{
+      class0:{
+        precision:"0.86",
+        recall:"0.93",
+        f1:"0.89"
+      },
+      class1:{
+        precision:"0.67",
+        recall:"0.49",
+        f1:"0.57"
+      }
+    },
+    weighted:{
+      precision:"0.81",
+      recall:"0.82",
+      f1:"0.81"
+    }
+  },
+
+  knn_ga:{
+    accuracy:"81.85%",
+    confusion:{
+      tn:4336,
+      fp:640,
+      fn:524,
+      tp:995
+    },
+    report:{
+      class0:{
+        precision:"0.89",
+        recall:"0.87",
+        f1:"0.88"
+      },
+      class1:{
+        precision:"0.61",
+        recall:"0.65",
+        f1:"0.63"
+      }
+    },
+
+    weighted:{
+      precision:"0.82",
+      recall:"0.82",
+      f1:"0.82"
+    }
+  },
+
+  knn_pso:{
+    accuracy:"81.37%",
+    confusion:{
+      tn:4336,
+      fp:640,
+      fn:573,
+      tp:964
+    },
+    report:{
+      class0:{
+        precision:"0.88",
+        recall:"0.87",
+        f1:"0.88"
+      },
+      class1:{
+        precision:"0.60",
+        recall:"0.63",
+        f1:"0.61"
+      }
+    },
+    weighted:{
+      precision:"0.82",
+      recall:"0.81",
+      f1:"0.82"
+    }
+  }
+};
+
+function loadModel(model){
+  const data = modelData[model];
+    // Accuracy 
+    document.getElementById("accuracy").textContent = data.accuracy;
+
+    // Confusion Matrix
+    document.getElementById("tn").textContent = data.confusion.tn;
+    document.getElementById("fp").textContent = data.confusion.fp;
+    document.getElementById("fn").textContent = data.confusion.fn;
+    document.getElementById("tp").textContent = data.confusion.tp;
+
+    // Mobile Confusion Matrix
+    document.getElementById("tnMobile").textContent = data.confusion.tn;
+    document.getElementById("fpMobile").textContent = data.confusion.fp;
+    document.getElementById("fnMobile").textContent = data.confusion.fn;
+    document.getElementById("tpMobile").textContent = data.confusion.tp;
+    
+    // Heatmap
+    const values = [
+      data.confusion.tn,
+      data.confusion.fp,
+      data.confusion.fn,
+      data.confusion.tp
+    ];
+
+    const max = Math.max(...values);
+
+    function heat(cellId, value){
+
+      const opacity = 0.15 + (value/max)*0.7;
+
+      document.getElementById(cellId).style.backgroundColor =
+        `rgba(145,127,179,${opacity})`;
+
+    }
+
+    heat("tnCell", data.confusion.tn);
+    heat("fpCell", data.confusion.fp);
+    heat("fnCell", data.confusion.fn);
+    heat("tpCell", data.confusion.tp);
+
+    // Heatmap Mobile
+    heat("tnCellMobile", data.confusion.tn);
+    heat("fpCellMobile", data.confusion.fp);
+    heat("fnCellMobile", data.confusion.fn);
+    heat("tpCellMobile", data.confusion.tp);
+
+    // Class Report
+    document.getElementById("precision0").textContent = data.report.class0.precision;
+    document.getElementById("recall0").textContent = data.report.class0.recall;
+    document.getElementById("f10").textContent = data.report.class0.f1;
+
+    document.getElementById("precision1").textContent = data.report.class1.precision;
+    document.getElementById("recall1").textContent = data.report.class1.recall;
+    document.getElementById("f11").textContent = data.report.class1.f1;
+}
+
+function loadComparison(){
+
+    const container = document.getElementById("comparisonList");
+
+    container.innerHTML = "";
+
+    // Model terbaik berdasarkan hasil analisis
+    const bestModel = "knn_ga";
+
+    const modelNames = {
+        nb:"Naive Bayes",
+        knn:"K-Nearest Neighbors",
+        nb_ga:"Naive Bayes + GA",
+        nb_pso:"Naive Bayes + PSO",
+        knn_ga:"K-Nearest Neighbors + GA",
+        knn_pso:"K-Nearest Neighbors + PSO"
+    };
+
+    for(const key in modelData){
+
+        const data = modelData[key];
+
+        const best = key === bestModel;
+
+        container.innerHTML += `
+
+          <div class="
+              rounded-2xl
+              p-5
+              transition-all
+              duration-300
+
+              ${
+                best
+                ? "border-2 border-[#917FB3] bg-[#F6F2FC] shadow-lg"
+                : "border border-[#E7DCF8] bg-white border-l-4 border-l-[#D7C7F3] shadow-sm hover:shadow-lg hover:border-[#B39BD6]"
+              }">
+
+            <div class="flex justify-between items-center mb-5">
+
+                <h4 class="font-bold text-lg text-primary">
+                    ${modelNames[key]}
+                </h4>
+
+                ${best ?
+                `<span class="bg-[#917FB3] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    BEST
+                </span>`
+                : ""}
+
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                <div>
+                    <p class="text-xs uppercase text-gray-500">
+                        Accuracy
+                    </p>
+                    <p class="font-bold text-lg">
+                        ${data.accuracy}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs uppercase text-gray-500">
+                        Precision
+                    </p>
+                    <p class="font-bold text-lg">
+                        ${data.weighted.precision}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs uppercase text-gray-500">
+                        Recall
+                    </p>
+                    <p class="font-bold text-lg">
+                        ${data.weighted.recall}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs uppercase text-gray-500">
+                        F1-Score
+                    </p>
+                    <p class="font-bold text-lg">
+                        ${data.weighted.f1}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        `;
+
+    }
+
+}
+
+loadComparison();
+
+
+document.getElementById("modelSelect")
+.addEventListener("change",function(){
+
+    loadModel(this.value);
+
+});
+
+loadModel("nb");
+</script>
+
+
+</html>

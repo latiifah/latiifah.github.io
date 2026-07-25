@@ -8,7 +8,7 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind Config (warna biar mirip desain) -->
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -48,32 +48,31 @@
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#skills" class="nav-link">Skills</a>
-      <a href="#services" class="nav-link">Services</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#contact" class="nav-link">Contact</a>
     </div>
 
-    <!-- Mobile Button -->
-    <button id="menuToggle" class="md:hidden p-2">
-      <i data-lucide="menu"></i>
-    </button>
+    <!-- Mobile -->
+    <div class="relative md:hidden">
+
+      <button id="menuToggle" class="p-2">
+          <i id="menuIcon" data-lucide="menu"></i>
+      </button>
+
+      <div
+        id="mobileMenu"
+        class="hidden absolute right-0 top-12 w-56 bg-white rounded-2xl shadow-2xl border border-purple-100 overflow-hidden">
+        
+        <a href="#home" class="mobile-menu-item">Home</a>
+        <a href="#about" class="mobile-menu-item">About</a>
+        <a href="#skills" class="mobile-menu-item">Skills</a>
+        <a href="#projects" class="mobile-menu-item">Projects</a>
+        <a href="#contact" class="mobile-menu-item">Contact</a>
+
+      </div>
+    </div>
   </div>
 </nav>
-
-<!-- ============ MOBILE DOCK ============ -->
-<div id="mobileDock"
-  class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden
-         flex items-center gap-3
-         bg-white/90 backdrop-blur-md px-4 py-3 rounded-full shadow-xl
-         border border-accent/30">
-
-  <a href="#home" class="mobile-link"><i data-lucide="home"></i></a>
-  <a href="#about" class="mobile-link"><i data-lucide="user"></i></a>
-  <a href="#skills" class="mobile-link"><i data-lucide="code-2"></i></a>
-  <a href="#projects" class="mobile-link"><i data-lucide="image"></i></a>
-  <a href="#services" class="mobile-link"><i data-lucide="database"></i></a>
-  <a href="#contact" class="mobile-link"><i data-lucide="mail"></i></a>
-</div>
 
 <!-- ================= SECTIONS ================= -->
 <!-- ================= HERO SECTION ================= -->
@@ -90,8 +89,7 @@
   </h1>
 
   <p class="mt-6 max-w-2xl text-gray-500 text-lg">
-    Final-year Data Science student passionate about finding clarity in
-    complex datasets and building impactful visualizations.
+    Transforming raw data into meaningful insights through analytics, visualization, and machine learning.
   </p>
 
   <div class="mt-10 flex gap-4">
@@ -123,7 +121,7 @@
 
       <!-- image -->
       <img
-        src="https://images.unsplash.com/photo-1603415526960-f7e0328f4c0c"
+        src="assets/img/profile.jpg"
         alt="Profile"
         class="relative w-[300px] h-[400px] object-cover rounded-3xl border-8 border-white shadow-xl"
       />
@@ -132,7 +130,7 @@
     <!-- ===== RIGHT : CONTENT ===== -->
     <div>
       <span class="text-xs font-bold tracking-widest text-secondary uppercase">
-        My Profile
+        About Me
       </span>
 
       <h2 class="mt-4 text-4xl font-extrabold leading-tight">
@@ -140,12 +138,14 @@
       </h2>
 
       <p class="mt-4 text-gray-600 leading-relaxed text-justify">
-        I'm a recent Mathematics graduate from Yogyakarta State University with a
-        strong interest in Data Analytics. I enjoy transforming complex datasets into
-        meaningful insights and data-driven solutions. Through academic projects and
-        hands-on experience, I've built a solid foundation in SQL, Python, data
-        analysis, and data visualization, and I'm eager to contribute these skills in
-        a professional environment.
+        I am a recent Mathematics graduate from Yogyakarta State University (UNY)
+        with a strong interest in data analytics and data science. During my academic journey,
+        I completed various data analytics and machine learning projects that strengthened my 
+        skills in data collection, cleaning, analysis, visualization, and predictive modeling. 
+        These experiences allowed me to build proficiency in Python, SQL, R, Microsoft Excel, 
+        and statistical analysis for extracting insights and supporting data-driven decision-making. 
+        I am eager to apply my analytical skills to solve real-world business problems while continuing 
+        to learn and grow as a data analyst.
       </p>
 
       <!-- ===== STATS ===== -->
@@ -169,21 +169,12 @@
 
         </a>
       </div>
-
-
-      <!-- ===== QUOTE ===== -->
-      <p class="mt-4 italic text-gray-500 text-sm max-w-xl">
-        “Seeking a role where I can contribute to data-driven decision making
-        while continuing to learn and grow under seasoned professionals.”
-      </p>
-    </div>
-
   </div>
 </section>
 
 <!-- ================= SKILLS ================= -->
-<section id="skills" class="min-h-[80vh]" bg-white px-6 py-32">
-  <div class="max-w-7xl mx-auto">
+<section id="skills" class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
 
     <!-- Title -->
     <div class="text-center mb-20">
@@ -296,106 +287,10 @@
   </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section id="services" class="py-24 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-6">
-
-    <!-- Title -->
-    <div class="text-center mb-16">
-      <span class="text-xs font-bold tracking-widest text-secondary uppercase">
-        What I Do
-      </span>
-      <h2 class="text-4xl md:text-5xl font-extrabold mt-3">
-        Services
-      </h2>
-    </div>
-
-    <!-- Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-      <!-- Card 1 -->
-      <div class="bg-white rounded-3xl p-10 text-center shadow-sm
-                  hover:shadow-xl transition duration-300">
-        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center
-                    rounded-3xl bg-cyan-100 text-cyan-500 text-3xl">
-          <i class="bi bi-bar-chart"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Data Analysis</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Focused on data exploration and analysis to deliver clear and useful
-          insights through data cleaning, EDA, statistical analysis, and
-          simple reporting.
-        </p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-white rounded-3xl p-10 text-center shadow-sm
-                  hover:shadow-xl transition duration-300">
-        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center
-                    rounded-3xl bg-orange-100 text-orange-500 text-3xl">
-          <i class="bi bi-grid-3x3-gap"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Data Entry</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Assisting with data entry and data management tasks by ensuring
-          data accuracy, consistency, and proper organization for analysis.
-        </p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white rounded-3xl p-10 text-center shadow-sm
-                  hover:shadow-xl transition duration-300">
-        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center
-                    rounded-3xl bg-emerald-100 text-emerald-500 text-3xl">
-          <i class="bi bi-pie-chart"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Data Visualization</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Assisting with data visualization by creating clear and meaningful charts and dashboards to support decision-making.
-        </p>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="bg-white rounded-3xl p-10 text-center shadow-sm
-                  hover:shadow-xl transition duration-300">
-        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center
-                    rounded-3xl bg-red-100 text-red-500 text-3xl">
-          <i class="bi bi-cpu"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Data Science</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Applying predictive modeling and machine learning techniques to
-          extract actionable, data-driven insights.
-        </p>
-      </div>
-
-      <!-- Card: Web Development (Basic) -->
-      <div class="bg-white rounded-3xl p-10 text-center shadow-sm
-                  hover:shadow-xl transition duration-300">
-        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center
-                    rounded-3xl bg-purple-100 text-purple-500 text-3xl">
-          <i class="bi bi-code-slash"></i>
-        </div>
-
-        <h3 class="text-xl font-bold mb-4">Web Development (Basic)</h3>
-
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Building simple and responsive web pages using basic HTML and CSS,
-          with a focus on clean layout, readability, and user-friendly design.
-        </p>
-
-        <span class="inline-block mt-4 text-xs font-semibold
-             bg-purple-100 text-purple-600 px-4 py-1 rounded-full">
-          Beginner Level
-        </span>
-
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ================= PROJECTS ================= -->
-<section id="projects" class="min-h-[80vh]" px-6 py-32">
+<section id="projects" class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
 
   <!-- Title -->
   <div class="max-w-7xl mx-auto text-center mb-16">
@@ -408,21 +303,26 @@
     </p>
   </div>
 
-  <!-- Filter Buttons (visual only dulu) -->
+  <!-- Filter Buttons -->
   <div class="flex flex-wrap justify-center gap-4 mb-16">
-    <button class="px-6 py-2 rounded-full text-sm font-semibold bg-primary text-white">
+    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
+    data-filter="all">
       All Projects
     </button>
-    <button class="px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
+    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
+    data-filter="dataanalysis">
       Data Analysis
     </button>
-    <button class="px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
+    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
+    data-filter="dataentry">
       Data Entry
     </button>
-    <button class="px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
+    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
+    data-filter="datascience">
       Data Science
     </button>
-    <button class="px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">
+    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
+    data-filter="web">
       Web
     </button>
   </div>
@@ -430,41 +330,73 @@
   <!-- Projects Grid -->
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-    <!-- Project Card 1 -->
-    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition">
-      <div class="h-48 bg-gray-100"></div>
+    <!-- Project Card 1-->
+    <div class="project-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition"
+    data-category="datascience">
+
+      <!-- Nanti diganti gambar cover -->
+      <div class="h-48 bg-gradient-to-br from-[#F8F5FD] to-[#ECE4FA] flex items-center justify-center">
+
+          <i data-lucide="chart-column"
+            class="w-20 h-20 text-[#917FB3]"></i>
+      </div>
 
       <div class="p-6">
+
         <span class="text-xs font-semibold text-secondary uppercase">
-          Data Analysis
+          Data Science
         </span>
 
         <h3 class="text-lg font-bold mt-2 mb-2">
-          Sales Performance Dashboard
+          Adult Census Income Prediction
         </h3>
 
         <p class="text-sm text-gray-600 mb-4">
-          Analyzed sales data and created an interactive dashboard
-          to identify trends and insights.
+          Built a machine learning model to predict whether an individual's annual income exceeds $50K using demographic and employment data.
         </p>
 
-        <a href="#" class="text-sm font-semibold text-primary hover:underline">
-          View Project →
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-secondary">
+            KNN
+          </span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-600">
+            Naive Bayes
+          </span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-600">
+            Genetic Algorithm
+          </span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-purple-600">
+            Particle Swarm Optimization
+          </span>
+        </div>
+
+        <a href="projects/adult-census-income/index.html"
+          class="text-sm font-semibold text-primary hover:underline">
+          View Case Study →
         </a>
+
       </div>
     </div>
 
     <!-- Project Card 2 -->
-    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition">
-      <div class="h-48 bg-gray-50 flex items-center justify-center">
-        <div class="w-20 h-20 rounded-2xl bg-purple-100 flex items-center justify-center">
-         <i class="bi bi-graph-up text-4xl text-secondary"></i>
-        </div>
+    <div class="project-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition"
+    data-category="datascience">
+
+      <!-- Nanti diganti gambar cover -->
+      <div class="h-48 bg-gradient-to-br from-[#F8F5FD] to-[#ECE4FA] flex items-center justify-center">
+
+          <i data-lucide="building-2"
+            class="w-20 h-20 text-[#917FB3]"></i>
       </div>
 
       <div class="p-6">
+
         <span class="text-xs font-semibold text-secondary uppercase">
           Data Science
+        </span>
+
+        <span class="px-3 py-1 text-[10px] font-semibold rounded-full bg-amber-100 text-amber-700">
+          🚧 Under Maintenance
         </span>
 
         <h3 class="text-lg font-bold mt-2 mb-2">
@@ -478,20 +410,69 @@
 
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-secondary">
-            Python
+            KNN
           </span>
           <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-600">
-            Scikit-Learn
+            Naive Bayes
           </span>
           <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-600">
-            Pandas
+            Decision Tree
           </span>
         </div>
 
-        <a href="projects/bank-customer-churn/index.html"
-           class="text-sm font-semibold text-primary hover:underline">
-          View Case Study →
-        </a>
+        <span
+          class="inline-flex items-center text-sm font-semibold text-gray-400 cursor-not-allowed">
+          Case Study in Progress
+        </span>
+      </div>
+    </div>
+
+    <!-- Project Card 23 -->
+    <div class="project-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition"
+    data-category="datascience">
+
+      <!-- Nanti diganti gambar cover -->
+      <div class="h-48 bg-gradient-to-br from-[#F8F5FD] to-[#ECE4FA] flex items-center justify-center">
+
+          <i data-lucide="heart-pulse"
+            class="w-20 h-20 text-[#917FB3]"></i>
+      </div>
+
+      <div class="p-6">
+
+        <span class="text-xs font-semibold text-secondary uppercase">
+          Data Science
+        </span>
+
+        <span class="px-3 py-1 text-[10px] font-semibold rounded-full bg-amber-100 text-amber-700">
+          🚧 Under Maintenance
+        </span>
+
+        <h3 class="text-lg font-bold mt-2 mb-2">
+          Diabetes Mellitus Classification
+        </h3>
+
+        <p class="text-sm text-gray-600 mb-4">
+          Undergraduate thesis project comparing single and stacking ensemble 
+          models for diabetes mellitus classification using MLP and XGBoost.
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-secondary">
+            MLP
+          </span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-600">
+            XGBoost
+          </span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-600">
+            Stacking Ensemble
+          </span>
+        </div>
+
+        <span
+          class="inline-flex items-center text-sm font-semibold text-gray-400 cursor-not-allowed">
+          Case Study in Progress
+        </span>
       </div>
     </div>
 
@@ -555,31 +536,29 @@
               linkedin.com/in/latifahnurfitriyani
             </p>
           </div>
-
         </div>
-
       </a>
 
-      <!-- Instagram -->
-      <a href="https://instagram.com/starcyfa"
+      <!-- GitHub -->
+      <a href="https://github.com/latiifah"
         target="_blank"
         class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
 
         <div class="flex items-center gap-4">
 
           <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-100 text-secondary flex-shrink-0">
-            <i class="bi bi-instagram text-xl"></i>
+            <i class="bi bi-github text-xl"></i>
           </div>
 
           <div>
-            <h3 class="font-semibold text-lg text-primary">Instagram</h3>
+            <h3 class="font-semibold text-lg text-primary">
+              GitHub
+            </h3>
             <p class="text-sm text-gray-500">
-              @starcyfa
+              github.com/latiifah
             </p>
           </div>
-
         </div>
-
       </a>
 
     </div>
@@ -593,17 +572,26 @@
 
   /* ========== MOBILE TOGGLE ========== */
   const toggleBtn = document.getElementById("menuToggle");
-  const mobileDock = document.getElementById("mobileDock");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-  toggleBtn.addEventListener("click", () => {
-    mobileDock.classList.toggle("hidden");
-    mobileDock.classList.toggle("flex");
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !toggleBtn.contains(e.target)
+    ) {
+      mobileMenu.classList.add("hidden");
+    }
   });
 
   /* ========== ACTIVE LINK ON SCROLL ========== */
   const sections = document.querySelectorAll("section");
   const navLinks = document.querySelectorAll(".nav-link");
-  const mobileLinks = document.querySelectorAll(".mobile-link");
+  const mobileLinks = document.querySelectorAll(".mobile-menu-item");
 
   function setActiveLink() {
     let current = "";
@@ -623,14 +611,81 @@
     });
 
     mobileLinks.forEach(link => {
-      link.classList.remove("active-icon");
+      link.classList.remove("bg-purple-100", "text-secondary");
+
       if (link.getAttribute("href") === "#" + current) {
-        link.classList.add("active-icon");
+        link.classList.add("bg-purple-100", "text-secondary");
       }
     });
   }
 
+
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+
+
   window.addEventListener("scroll", setActiveLink);
+
+
+/* ========== PROJECT FILTER ========== */
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll(".project-card");
+const projectLink = document.querySelector('a[href="#projects"].nav-link');
+const mobileProjectLink = document.querySelector('a[href="#projects"].mobile-menu-item');
+
+function showProjects(filter) {
+
+    projectCards.forEach(card => {
+
+        if (filter === "all" || card.dataset.category === filter) {
+            card.classList.remove("hidden");
+        } else {
+            card.classList.add("hidden");
+        }
+
+    });
+
+    filterButtons.forEach(btn => {
+        btn.classList.remove("bg-primary", "text-white");
+        btn.classList.add("bg-gray-100", "text-gray-600");
+    });
+
+    const activeBtn = document.querySelector(`[data-filter="${filter}"]`);
+
+    if (activeBtn) {
+        activeBtn.classList.remove("bg-gray-100", "text-gray-600");
+        activeBtn.classList.add("bg-primary", "text-white");
+    }
+
+}
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        showProjects(button.dataset.filter);
+
+    });
+
+});
+
+projectLink.addEventListener("click", () => {
+
+    showProjects("all");
+
+});
+
+mobileProjectLink.addEventListener("click", () => {
+
+    showProjects("all");
+
+});
+
+showProjects("all");
 </script>
 
 <!-- ================= STYLE EXTRA ================= -->
@@ -659,20 +714,22 @@
     width: 100%;
   }
 
-  .mobile-link {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    background: #f3f4f6;
-    color: #6b7280;
+  .mobile-menu-item{
+      display:block;
+      padding:14px 20px;
+      font-size:.9rem;
+      font-weight:600;
+      color:#1f2340;
+      transition:.25s;
   }
 
-  .active-icon {
-    background: #8e7cc3;
-    color: white;
+  .mobile-menu-item:hover{
+      background:#f5f3ff;
+      color:#8e7cc3;
+  }
+
+  .mobile-menu-item + .mobile-menu-item{
+      border-top:1px solid #f3f4f6;
   }
 </style>
 
