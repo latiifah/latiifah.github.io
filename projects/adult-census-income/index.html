@@ -84,6 +84,31 @@
     </div>
   </nav>
 
+  <!-- Mobile Navigation -->
+  <div id="mobileMenu"
+      class="hidden fixed top-[73px] left-0 w-full bg-white border-b border-purple-100 shadow-md z-40 md:hidden">
+
+      <div class="flex flex-col px-6 py-4">
+
+          <a href="#overview"
+            class="py-3 font-medium text-primary border-b border-gray-100">
+              Overview
+          </a>
+
+          <a href="#analysis"
+            class="py-3 font-medium text-primary border-b border-gray-100">
+              Analysis
+          </a>
+
+          <a href="#results"
+            class="py-3 font-medium text-primary">
+              Results
+          </a>
+
+      </div>
+
+  </div>
+
   <div class="max-w-6xl mx-auto px-6 pt-20 pb-16">
     <!-- ================= HERO PROJECT ================= -->
     <section class="rounded-[32px] bg-[#917FB3]
@@ -1408,6 +1433,23 @@ document.getElementById("modelSelect")
 });
 
 loadModel("nb");
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+});
+
+document.querySelectorAll("#mobileMenu a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        mobileMenu.classList.add("hidden");
+
+    });
+
+});
 </script>
 
 
